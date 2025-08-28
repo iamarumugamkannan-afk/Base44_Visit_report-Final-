@@ -1,13 +1,13 @@
-import { base44 } from './base44Client';
+// Import actual service implementations
+import visitService from '../services/visitService.js';
+import customerService from '../services/customerService.js';
+import configurationService from '../services/configurationService.js';
+import { authService } from '../lib/auth.js';
 
+// Export services as entities
+export const ShopVisit = visitService;
+export const Customer = customerService;
+export const Configuration = configurationService;
 
-export const ShopVisit = base44.entities.ShopVisit;
-
-export const Customer = base44.entities.Customer;
-
-export const Configuration = base44.entities.Configuration;
-
-
-
-// auth sdk:
-export const User = base44.auth;
+// Export auth service as User
+export const User = authService;
