@@ -8,6 +8,8 @@
 @@ .. @@
    const loadConfigurations = async () => {
      try {
+     }
+   }
 -      const configs = await Configuration.list();
 +      const configs = await configurationService.list();
        const products = configs.filter(c => c.config_type === 'canna_products' && c.is_active)
