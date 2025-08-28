@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { ShopVisit } from "@/api/entities";
-import { User } from "@/api/entities";
+import { UserService } from "@/api/entities";
 import { Customer } from "@/api/entities";
 import { UploadFile, InvokeLLM } from "@/api/integrations";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -104,7 +104,7 @@ export default function NewVisit() {
     const loadInitialData = async () => {
       setIsLoading(true);
       try {
-        const currentUser = await User.me();
+        const currentUser = await UserService.me();
         setUser(currentUser);
 
         if (id) {
