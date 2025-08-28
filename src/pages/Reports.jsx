@@ -7,6 +7,8 @@
 @@ .. @@
    const loadVisits = async () => {
      try {
+     }
+   }
 -      const data = await ShopVisit.list("-created_date", 200);
 +      const data = await visitService.list("-created_date", 200);
        setVisits(data);

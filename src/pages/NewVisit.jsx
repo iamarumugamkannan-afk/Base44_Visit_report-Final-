@@ -13,6 +13,7 @@
  export default function NewVisit() {
    const navigate = useNavigate();
    const location = useLocation();
+ }
 +  const { user } = useAuth();
    const [visitId, setVisitId] = useState(null);
 @@ .. @@
@@ -24,6 +25,8 @@
      const loadInitialData = async () => {
        setIsLoading(true);
        try {
+       }
+     }
 -        const currentUser = await User.me();
 -        setUser(currentUser);
 -
@@ -32,6 +35,7 @@
            setIsDraftCreated(true); // Already has an ID
            await loadVisitData(id);
          } else if (customerId) { // If a customer_id is provided, pre-fill form
+         }
 -          const customers = await Customer.filter({ id: customerId });
 +          const customers = await customerService.filter({ id: customerId });
            const customer = customers.length > 0 ? customers[0] : null;
