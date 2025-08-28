@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User } from "@/api/entities";
+import { UserService } from "@/api/entities";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -61,7 +61,7 @@ export default function Admin() {
 
   const loadUsers = async () => {
     try {
-      const userList = await User.list();
+      const userList = await UserService.list();
       setUsers(userList);
     } catch (err) {
       setError("Failed to load users");
@@ -88,7 +88,7 @@ export default function Admin() {
 
   const handleUpdateUser = async (userId, updates) => {
     try {
-      await User.update(userId, updates);
+      await UserService.update(userId, updates);
       await loadUsers();
       setSuccess("User updated successfully");
       setShowUserDialog(false);

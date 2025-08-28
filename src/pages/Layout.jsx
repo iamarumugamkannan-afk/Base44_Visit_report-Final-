@@ -38,7 +38,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User as UserEntity } from "@/api/entities";
+import { AuthService } from "@/api/entities";
 
 const navigationItems = [
   {
@@ -102,7 +102,7 @@ export default function Layout({ children, currentPageName }) {
 
   const loadUser = async () => {
     try {
-      const currentUser = await UserEntity.getCurrentUser();
+      const currentUser = await AuthService.getCurrentUser();
       setUser(currentUser);
     } catch (error) {
       console.log("User not authenticated");
@@ -112,7 +112,7 @@ export default function Layout({ children, currentPageName }) {
 
   const handleLogout = async () => {
     try {
-      await UserEntity.logout();
+      await AuthService.logout();
       window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);

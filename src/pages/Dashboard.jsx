@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ShopVisit } from "@/api/entities";
-import { User } from "@/api/entities";
+import { AuthService } from "@/api/entities";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { 
@@ -51,7 +51,7 @@ export default function Dashboard() {
     try {
       const [visitsData, userData] = await Promise.all([
         ShopVisit.list("-created_at", 100),
-        User.getCurrentUser()
+        AuthService.getCurrentUser()
       ]);
       setVisits(visitsData);
       setUser(userData);

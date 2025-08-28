@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShopVisit } from '@/api/entities';
 import { Customer } from '@/api/entities';
-import { User } from '@/api/entities';
+import { UserService } from '@/api/entities';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
@@ -50,7 +50,7 @@ export default function Analytics() {
         const [visitData, customerData, userData] = await Promise.all([
           ShopVisit.list('-created_date', 500),
           Customer.list(),
-          User.list()
+          UserService.list()
         ]);
         setVisits(visitData);
         setCustomers(customerData);

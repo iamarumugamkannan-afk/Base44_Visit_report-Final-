@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { User } from "@/api/entities";
+import { AuthService } from "@/api/entities";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,7 @@ export default function Settings() {
 
   const loadUser = async () => {
     try {
-      const currentUser = await User.me();
+      const currentUser = await AuthService.me();
       setUser(currentUser);
       setUserData({
         full_name: currentUser.full_name || "",
@@ -58,7 +58,7 @@ export default function Settings() {
     setError(null);
     
     try {
-      await User.updateMyUserData({
+      await AuthService.updateMyUserData({
         full_name: userData.full_name,
         department: userData.department,
         territory: userData.territory,
@@ -66,7 +66,7 @@ export default function Settings() {
       });
 
       // Re-fetch the user to get the absolute latest state
-      const updatedUser = await User.me();
+      const updatedUser = await AuthService.me();
       
       // Update the local state immediately
       setUser(updatedUser);
@@ -96,7 +96,7 @@ export default function Settings() {
 
   const handleLogout = async () => {
     try {
-      await User.logout();
+      await AuthService.logout();
       window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
