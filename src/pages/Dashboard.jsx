@@ -51,7 +51,7 @@ export default function Dashboard() {
     try {
       const [visitsData, userData] = await Promise.all([
         ShopVisit.list("-created_date", 100),
-        User.me()
+        User.getCurrentUser()
       ]);
       setVisits(visitsData);
       setUser(userData);

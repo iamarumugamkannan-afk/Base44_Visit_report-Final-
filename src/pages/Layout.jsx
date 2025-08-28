@@ -102,7 +102,7 @@ export default function Layout({ children, currentPageName }) {
 
   const loadUser = async () => {
     try {
-      const currentUser = await UserEntity.me();
+      const currentUser = await UserEntity.getCurrentUser();
       setUser(currentUser);
     } catch (error) {
       console.log("User not authenticated");
