@@ -50,7 +50,7 @@ export default function Dashboard() {
   const loadData = async () => {
     try {
       const [visitsData, userData] = await Promise.all([
-        ShopVisit.list("-created_date", 100),
+        ShopVisit.list("-created_at", 100),
         User.getCurrentUser()
       ]);
       setVisits(visitsData);
@@ -85,11 +85,11 @@ export default function Dashboard() {
   }
 
   const todaysVisits = visits.filter(visit => 
-    format(new Date(visit.created_date), 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+    format(new Date(visit.created_at), 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
   );
 
   const thisWeeksVisits = visits.filter(visit => {
-    const visitDate = new Date(visit.created_date);
+    const visitDate = new Date(visit.created_at);
     const weekAgo = new Date();
     weekAgo.setDate(weekAgo.getDate() - 7);
     return visitDate >= weekAgo;
