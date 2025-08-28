@@ -2,7 +2,7 @@
 import visitService from '../services/visitService.js';
 import customerService from '../services/customerService.js';
 import configurationService from '../services/configurationService.js';
-import { authService } from '../lib/auth.js';
+import authService from '../lib/auth.js';
 
 // Export services as entities
 export const ShopVisit = visitService;
