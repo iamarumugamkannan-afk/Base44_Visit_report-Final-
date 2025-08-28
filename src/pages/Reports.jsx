@@ -70,7 +70,7 @@ export default function Reports() {
 
   const loadVisits = async () => {
     try {
-      const data = await ShopVisit.list("-created_date", 200);
+      const data = await ShopVisit.list("-created_at", 200);
       setVisits(data);
     } catch (error) {
       console.error("Error loading visits:", error);
@@ -111,7 +111,7 @@ export default function Reports() {
 
       if (startDate) {
         filtered = filtered.filter(visit => {
-          const visitCreatedDate = visit.created_date ? new Date(visit.created_date) : null;
+          const visitCreatedDate = visit.created_at ? new Date(visit.created_at) : null;
           return visitCreatedDate && startOfDay(visitCreatedDate) >= startDate;
         });
       }
@@ -159,7 +159,7 @@ export default function Reports() {
       'Order Value': visit.order_value,
       'Follow-up Required': visit.follow_up_required ? 'Yes' : 'No',
       'Satisfaction': visit.overall_satisfaction,
-      'Created': visit.created_date ? format(new Date(visit.created_date), 'yyyy-MM-dd HH:mm') : ''
+      'Created': visit.created_at ? format(new Date(visit.created_at), 'yyyy-MM-dd HH:mm') : ''
     }));
 
     if (exportType === 'csv') {
