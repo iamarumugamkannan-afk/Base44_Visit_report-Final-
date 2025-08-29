@@ -8,11 +8,11 @@ import { Edit, Check } from "lucide-react";
 
 export default function SignatureSection({ formData, updateFormData }) {
   const [signerName, setSignerName] = useState(formData.signature_signer_name || "");
-  const [isSigned, setIsSigned] = useState(!!formData.signature);
+  const [isSigned, setIsSigned] = useState(!!formData.signature_data);
 
   const handleSaveSignature = (signatureDataUrl) => {
     updateFormData({
-      signature: signatureDataUrl,
+      signature_data: signatureDataUrl,
       signature_signer_name: signerName,
       signature_date: new Date().toISOString()
     });
@@ -46,7 +46,7 @@ export default function SignatureSection({ formData, updateFormData }) {
                     <Check className="w-4 h-4 mr-2"/>
                     Signature Captured
                 </Badge>
-                 <img src={formData.signature} alt="signature" className="mx-auto mt-4 border rounded"/>
+                 <img src={formData.signature_data} alt="signature" className="mx-auto mt-4 border rounded"/>
             </div>
           ) : (
             <SignaturePad onSave={handleSaveSignature} />

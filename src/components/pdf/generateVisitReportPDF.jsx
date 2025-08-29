@@ -196,7 +196,7 @@ export const generateVisitReportPDF = (formData, user) => {
   }
   
   // Signature
-  if (formData.signature) {
+  if (formData.signature_data) {
     addNewPageIfNeeded(60);
     doc.setFontSize(14);
     doc.setFont(undefined, 'bold');
@@ -205,7 +205,7 @@ export const generateVisitReportPDF = (formData, user) => {
     currentY += 15;
     
     try {
-      doc.addImage(formData.signature, 'PNG', margin, currentY, 80, 30);
+      doc.addImage(formData.signature_data, 'PNG', margin, currentY, 80, 30);
       currentY += 35;
     } catch (error) {
       console.warn('Could not add signature image:', error);

@@ -90,7 +90,7 @@ export default function NewVisit() {
     notes: "",
     visit_photos: [],
     gps_coordinates: null,
-    signature: null,
+    signature_data: null,
     signature_signer_name: null,
     signature_date: null,
     is_draft: false
@@ -274,7 +274,7 @@ export default function NewVisit() {
     // Questionnaire complete check now includes customer_id as required
     const isComplete = formData.customer_id && formData.shop_name && formData.shop_type && formData.visit_purpose;
     const hasFollowUp = formData.follow_up_required ? formData.follow_up_notes && formData.follow_up_notes.length > 0 : true;
-    const hasSignature = !!formData.signature && !!formData.signature_signer_name && !!formData.signature_date;
+    const hasSignature = !!formData.signature_data && !!formData.signature_signer_name && !!formData.signature_date;
 
     setChecklistItems({
       photosAttached: hasPhotos,
@@ -307,6 +307,9 @@ export default function NewVisit() {
         ...formData,
         calculated_score: calculatedScore,
         priority_level: priorityLevel,
+        gps_coordinates: formData.gps_coordinates ? 
+          `(${formData.gps_coordinates.x},${formData.gps_coordinates.y})` : 
+          null,
         is_draft: false,
         draft_saved_at: null // Explicitly set to null for final submission
       };
