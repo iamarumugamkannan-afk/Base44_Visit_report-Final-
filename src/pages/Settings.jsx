@@ -38,7 +38,7 @@ export default function Settings() {
 
   const loadUser = async () => {
     try {
-      const currentUser = await AuthService.me();
+      const currentUser = await AuthService.getCurrentUser();
       setUser(currentUser);
       setUserData({
         full_name: currentUser.full_name || "",
@@ -58,7 +58,7 @@ export default function Settings() {
     setError(null);
     
     try {
-      await AuthService.updateMyUserData({
+      await AuthService.updateProfile({
         full_name: userData.full_name,
         department: userData.department,
         territory: userData.territory,
@@ -66,7 +66,7 @@ export default function Settings() {
       });
 
       // Re-fetch the user to get the absolute latest state
-      const updatedUser = await AuthService.me();
+      const updatedUser = await AuthService.getCurrentUser();
       
       // Update the local state immediately
       setUser(updatedUser);
