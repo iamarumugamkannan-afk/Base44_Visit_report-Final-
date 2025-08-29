@@ -48,7 +48,7 @@ export default function Analytics() {
       setIsLoading(true);
       try {
         const [visitData, customerData, userData] = await Promise.all([
-          ShopVisit.list('-created_date', 500),
+          ShopVisit.list('-created_at', 500),
           Customer.list(),
           UserService.list()
         ]);
