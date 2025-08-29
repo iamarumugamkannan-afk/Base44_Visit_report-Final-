@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Customer } from "@/api/entities";
-import { User } from "@/api/entities";
+import { UserService } from "@/api/entities";
 import { motion } from "framer-motion";
 import {
   Users,
